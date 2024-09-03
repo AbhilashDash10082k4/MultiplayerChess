@@ -12,16 +12,9 @@ export default function Cell({cell, index, makeMove, setFromPos}) { //The cell w
 //index as a second prop. This is the index of the cell in the board array.
     const light = isLightSquare(cell.pos, index); //determines whether a cell should be styled as light or dark based on this parameters.
 
-    const {possibleMoves, turn, check} = useContext(GameContext);
+    const {possibleMoves} = useContext(GameContext);
     
     const isPossibleMove = possibleMoves.includes(cell.pos)
-
-    const color = cell.piece.toUpperCase() === cell.piece ? 'w' : 'b';
-
-    function inCheck() {
-        const king = cell.piece.toUpperCase() === 'K';
-        return turn === color && king && check;
-    }
 
     const handleDrop = () => {
         makeMove(cell.pos);
@@ -30,7 +23,7 @@ export default function Cell({cell, index, makeMove, setFromPos}) { //The cell w
     
     return <div className={`cell ${light ? 'bg-[#EBECD0]':'bg-[#739552]'} text-center flex justify-center items-center w-[calc((100vh_*_0.9)_/_9.5)] h-[calc((100vh_*_0.85)_/_9.5)] px-[0.35rem] py-1`} onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
 
-        <div className={`overlay ${isPossibleMove && 'possible-move'} ${inCheck() && check} `}>
+        <div className={`overlay ${isPossibleMove && 'possible-move' ?'bg-orange-300' : null}`}>
             <Piece pos={cell.pos} name={cell.piece} setFromPos={setFromPos}></Piece>
         </div> 
     </div>

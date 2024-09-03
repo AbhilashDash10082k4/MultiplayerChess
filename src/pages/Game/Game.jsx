@@ -38,15 +38,15 @@ export const Game = () => {
         
         chess.move({from, to}); //chess.move() has move validation logic
 
-        dispatch({type: types.CLEAR_POSSIBLE_MOVES}) //object we provide to dispatch({}) is received by our reducer as the value of action
+        dispatch({type: types.CLEAR_MOVES}) //object we provide to dispatch({}) is received by our reducer as the value of action
 
         setFen(chess.fen()); //updates the board with new pos of the moved piece , from here the control reaches to the useEfect which sets the board with the curr fen val
     }
 
-    const setFromPos = (pos) => {
+    const setFromPos = (pos) => { // called onDragStart
         fromPos.current = pos;
         dispatch({
-            type: types.SET_POSSIBLE_MOVES,
+            type: types.SET_POSSIBLE_MOVES, 
             moves: chess.moves({square: pos}) //returns a list of possible moves
         })
     } //resets the board with new piece on  its current location to the state where the other side can move a piece
