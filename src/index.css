@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.possible-move {
+    @apply bg-[linear-gradient(120deg,#f6d365_0%,#fda085_100%)] opacity-[0.85];
+}

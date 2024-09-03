@@ -1,0 +1,10 @@
+/* The rest of the css remains the same */
+.check {
+    background-image: linear-gradient(
+        to right,
+        #f66f88 0%,
+        #ee5574 19%,
+        #f8444d 60%,
+        #eb7b6a 100%
+    );
+}
